@@ -1,0 +1,33 @@
+<body>
+  <canvas id="glCanvas" width="640" height="480"></canvas>
+</body>
+<script type="notjs" id="2d-vertex-shader">
+  // type = GL Shader Language (resembles C/C++)
+
+  // shaders don't have a default precision, mediump is a good compromise
+  precision mediump float;
+
+  attribute vec2 vertPosition;
+  attribute vec3 vertColor;
+  varying vec3 fragColor;
+
+  // all shaders have a main function
+  // this one is responsible for setting gl_Position
+  void main() {
+    fragColor = vertColor;
+    gl_Position = vec4(vertPosition, 0.0, 1.0);
+  }
+</script>
+
+<script type="notjs" id="2d-fragment-shader">
+  precision mediump float;
+
+  varying vec3 fragColor;
+
+  // all shaders have a main function
+  // this one is responsible for setting gl_FragColor
+  void main() {
+    gl_FragColor = vec4(fragColor, 1.0);
+  }
+</script>
+<script type="text/javascript" src="./script.js"></script>
