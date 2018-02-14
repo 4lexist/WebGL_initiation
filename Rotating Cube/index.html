@@ -1,0 +1,34 @@
+<body>
+  <canvas id="glCanvas" width="640" height="480">Your browser does not support HTML5</canvas>
+</body>
+<script type="notjs" id="2d-vertex-shader">
+  precision mediump float;
+
+  attribute vec3 vertPosition;
+  attribute vec3 vertColor;
+  varying vec3 fragColor;
+
+  // uniform means it's not going to change during draw call
+  uniform mat4 mWorld;
+  uniform mat4 mView;
+  uniform mat4 mProj;
+
+  void main() {
+    fragColor = vertColor;
+    // multiplications are called from right to left
+    gl_Position = mProj * mView * mWorld * vec4(vertPosition, 1.0);
+  }
+</script>
+
+<script type="notjs" id="2d-fragment-shader">
+  // No changes since Simple Triangle
+  precision mediump float;
+
+  varying vec3 fragColor;
+
+  void main() {
+    gl_FragColor = vec4(fragColor, 1.0);
+  }
+</script>
+<script type="text/javascript" src="https://rawgit.com/toji/gl-matrix/master/dist/gl-matrix-min.js"></script>
+<script type="text/javascript" src="./script.js"></script>
